@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import { homedir } from 'os';
 import { changeDirectory } from './change-directory.js';
+import { list } from './list.js';
 import { moveUp } from './move-up.js';
 
 let currentDir = homedir();
@@ -18,8 +19,7 @@ export const commandsListener = async (command, args) => {
       currentDir = await changeDirectory(currentDir, args[0]);
       break;
     case 'ls':
-      const fileList = await fs.readdir(currentDir, {withFileTypes: true});
-      console.table(fileList.map(file => ({name: file.name, type: file.isDirectory() ? 'directory' : 'file'})));
+      await list(currentDir);
       break;
     default:
       console.log(`Invalid input.`);
