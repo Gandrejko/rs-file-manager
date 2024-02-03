@@ -1,7 +1,7 @@
 import { homedir } from 'os';
 import readline from 'readline';
 import util from 'util';
-import commandsListener from './commands/commands-listener.js';
+import { commandsListener } from './commands/commands-listener.js';
 
 const args = process.argv.slice(2);
 const usernameArg = args.find(arg => arg.startsWith('--username='));
