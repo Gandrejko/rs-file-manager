@@ -5,6 +5,7 @@ import { deleteFile } from './delete-file.js';
 import { list } from './list.js';
 import { moveUp } from './move-up.js';
 import { renameFile } from './rename-file.js';
+import OS from './os.js';
 
 let currentDir = homedir();
 
@@ -43,6 +44,13 @@ export const commandsListener = async (command, args) => {
         break;
       }
       await renameFile(currentDir, args[0], args[1]);
+      break;
+    case 'os':
+      if (!args || !OS[args[0].slice(2)]) {
+        console.log(`Invalid input.`);
+        break;
+      }
+      await OS[args[0].slice(2)]();
       break;
     default:
       console.log(`Invalid input.`);
