@@ -2,6 +2,7 @@ import { homedir } from 'os';
 import { changeDirectory } from './change-directory.js';
 import { createFile } from './create-file.js';
 import { deleteFile } from './delete-file.js';
+import { calculateHash } from './hash.js';
 import { list } from './list.js';
 import { moveUp } from './move-up.js';
 import { renameFile } from './rename-file.js';
@@ -51,6 +52,13 @@ export const commandsListener = async (command, args) => {
         break;
       }
       await OS[args[0].slice(2)]();
+      break;
+    case 'hash':
+      if (!args) {
+        console.log(`Invalid input.`);
+        break;
+      }
+      await calculateHash(args[0]);
       break;
     default:
       console.log(`Invalid input.`);
