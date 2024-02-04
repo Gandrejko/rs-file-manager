@@ -1,6 +1,7 @@
 import { homedir } from 'os';
 import { changeDirectory } from './change-directory.js';
 import { compress } from './compress.js';
+import { copyFile } from './copy-file.js';
 import { createFile } from './create-file.js';
 import { decompress } from './decompress.js';
 import { deleteFile } from './delete-file.js';
@@ -55,6 +56,13 @@ export const commandsListener = async (command, args) => {
         break;
       }
       await renameFile(currentDir, args[0], args[1]);
+      break;
+    case 'cp':
+      if (!args || args.length !== 2) {
+        console.log(`Invalid input.`);
+        break;
+      }
+      await copyFile(args[0], args[1]);
       break;
     case 'os':
       if (!args || !OS[args[0].slice(2)]) {
