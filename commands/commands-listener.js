@@ -1,17 +1,17 @@
 import { homedir } from 'os';
 import { changeDirectory } from './change-directory.js';
-import { compress } from './compress.js';
-import { copyFile } from './copy-file.js';
-import { createFile } from './create-file.js';
-import { decompress } from './decompress.js';
-import { deleteFile } from './delete-file.js';
+import { compress } from './zip/compress.js';
+import { copyFile } from './fs/copy-file.js';
+import { createFile } from './fs/create-file.js';
+import { decompress } from './zip/decompress.js';
+import { deleteFile } from './fs/delete-file.js';
 import { calculateHash } from './hash.js';
 import { list } from './list.js';
-import { moveFile } from './move-file.js';
+import { moveFile } from './fs/move-file.js';
 import { moveUp } from './move-up.js';
-import { renameFile } from './rename-file.js';
+import { renameFile } from './fs/rename-file.js';
 import OS from './os.js';
-import { showFileContent } from './show-file-content.js';
+import { showFileContent } from './fs/show-file-content.js';
 
 let currentDir = homedir();
 
