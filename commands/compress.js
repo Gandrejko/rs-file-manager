@@ -4,15 +4,17 @@ import { pipeline } from 'stream';
 
 export const compress = async (sourceFilePath, zippedFilePath) => {
   try {
-    const sourceFileStream = createReadStream(sourceFilePath);
-    const zippedFileStream = createWriteStream(zippedFilePath);
-    const zipStream = createBrotliCompress();
-    await pipeline(
-      sourceFileStream,
-      zipStream,
-      zippedFileStream,
-      (error) => error && console.log('Operation failed')
-    );
+    await new Promise((resolve, reject) => {
+      const sourceFileStream = createReadStream(sourceFilePath);
+      const zippedFileStream = createWriteStream(zippedFilePath);
+      const zipStream = createBrotliCompress();
+      pipeline(
+        sourceFileStream,
+        zipStream,
+        zippedFileStream,
+        (error) => error ? reject() : resolve()
+      );
+    });
   } catch {
     console.log('Operation failed');
   }
