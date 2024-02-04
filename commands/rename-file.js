@@ -1,11 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-export const renameFile = async (currDir, oldName, newName) => {
+export const renameFile = async (filePath, newName) => {
   try {
-    const oldFile = path.join(currDir, oldName);
-    const newFile = path.join(currDir, newName);
-    await fs.rename(oldFile, newFile);
+    const newFile = path.join(path.dirname(filePath), newName);
+    await fs.rename(filePath, newFile);
   } catch {
     console.log('Operation failed');
   }

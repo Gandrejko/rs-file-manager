@@ -49,14 +49,14 @@ export const commandsListener = async (command, args) => {
         console.log(`Invalid input.`);
         break;
       }
-      await deleteFile(currentDir, args[0]);
+      await deleteFile(args[0]);
       break;
     case 'rn':
       if (!args || args.length !== 2) {
         console.log(`Invalid input.`);
         break;
       }
-      await renameFile(currentDir, args[0], args[1]);
+      await renameFile(args[0], args[1]);
       break;
     case 'cp':
       if (!args || args.length !== 2) {

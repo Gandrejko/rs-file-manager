@@ -1,9 +1,9 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-export const deleteFile = async (currDir, fileName) => {
+export const deleteFile = async (filePath) => {
   try {
-    await fs.rm(path.join(currDir, fileName));
+    await fs.rm(filePath);
   } catch {
     console.log('Operation failed');
   }
