@@ -7,6 +7,7 @@ import { decompress } from './decompress.js';
 import { deleteFile } from './delete-file.js';
 import { calculateHash } from './hash.js';
 import { list } from './list.js';
+import { moveFile } from './move-file.js';
 import { moveUp } from './move-up.js';
 import { renameFile } from './rename-file.js';
 import OS from './os.js';
@@ -63,6 +64,13 @@ export const commandsListener = async (command, args) => {
         break;
       }
       await copyFile(args[0], args[1]);
+      break;
+    case 'mv':
+      if (!args || args.length !== 2) {
+        console.log(`Invalid input.`);
+        break;
+      }
+      await moveFile(args[0], args[1]);
       break;
     case 'os':
       if (!args || !OS[args[0].slice(2)]) {
