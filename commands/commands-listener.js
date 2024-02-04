@@ -9,6 +9,7 @@ import { list } from './list.js';
 import { moveUp } from './move-up.js';
 import { renameFile } from './rename-file.js';
 import OS from './os.js';
+import { showFileContent } from './show-file-content.js';
 
 let currentDir = homedir();
 
@@ -26,6 +27,13 @@ export const commandsListener = async (command, args) => {
       break;
     case 'ls':
       await list(currentDir);
+      break;
+    case 'cat':
+      if (!args) {
+        console.log(`Invalid input.`);
+        break;
+      }
+      await showFileContent(args[0]);
       break;
     case 'add':
       if (!args) {
