@@ -1,6 +1,8 @@
 import { homedir } from 'os';
 import { changeDirectory } from './change-directory.js';
+import { compress } from './compress.js';
 import { createFile } from './create-file.js';
+import { decompress } from './decompress.js';
 import { deleteFile } from './delete-file.js';
 import { calculateHash } from './hash.js';
 import { list } from './list.js';
@@ -59,6 +61,20 @@ export const commandsListener = async (command, args) => {
         break;
       }
       await calculateHash(args[0]);
+      break;
+    case 'compress':
+      if (!args || args.length !== 2) {
+        console.log(`Invalid input.`);
+        break;
+      }
+      await compress(args[0], args[1]);
+      break;
+    case 'decompress':
+      if (!args || args.length !== 2) {
+        console.log(`Invalid input.`);
+        break;
+      }
+      await decompress(args[0], args[1]);
       break;
     default:
       console.log(`Invalid input.`);
